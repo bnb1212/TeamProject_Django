@@ -7,6 +7,48 @@ $white: #fff;
 $black: #000000;
 // $darken: #3a4348;
 
+<<<<<<< HEAD
+$primary: #5685D2;
+$secondary: #f7b71d;
+
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin transition($transition) {
+    -moz-transition:    all $transition ease;
+    -o-transition:      all $transition ease;
+    -webkit-transition: all $transition ease;
+    -ms-transition: 		all $transition ease;
+    transition:         all $transition ease;
+}
+
+@mixin gradient-background(){
+	background: rgba(255,255,255,0.71);
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.71) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0.71)), color-stop(50%, rgba(255,255,255,0)), color-stop(100%, rgba(255,255,255,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0.71) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,0.71) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,0.71) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0.71) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0 );
+}
+
+@mixin gradient-background-two(){
+	background: rgba(86,133,210,1);
+	background: -moz-linear-gradient(left, rgba(86,133,210,1) 0%, rgba(86,133,210,0.9) 36%, rgba(86,133,210,0.55) 50%, rgba(255,255,255,0) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(86,133,210,1)), color-stop(36%, rgba(86,133,210,0.9)), color-stop(50%, rgba(86,133,210,0.55)), color-stop(100%, rgba(255,255,255,0)));
+	background: -webkit-linear-gradient(left, rgba(86,133,210,1) 0%, rgba(86,133,210,0.9) 36%, rgba(86,133,210,0.55) 50%, rgba(255,255,255,0) 100%);
+	background: -o-linear-gradient(left, rgba(86,133,210,1) 0%, rgba(86,133,210,0.9) 36%, rgba(86,133,210,0.55) 50%, rgba(255,255,255,0) 100%);
+	background: -ms-linear-gradient(left, rgba(86,133,210,1) 0%, rgba(86,133,210,0.9) 36%, rgba(86,133,210,0.55) 50%, rgba(255,255,255,0) 100%);
+	background: linear-gradient(to right, rgba(86,133,210,1) 0%, rgba(86,133,210,0.9) 36%, rgba(86,133,210,0.55) 50%, rgba(255,255,255,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='##5685D2', endColorstr='#ffffff', GradientType=1 );
+=======
 $primary: #d4ca68;
 $secondary: #f7b71d;
 
@@ -47,6 +89,7 @@ $secondary: #f7b71d;
 	background: -ms-linear-gradient(left, rgba(212,201,104,1) 0%, rgba(212,201,104,0.9) 36%, rgba(212,201,104,0.55) 50%, rgba(255,255,255,0) 100%);
 	background: linear-gradient(to right, rgba(212,201,104,1) 0%, rgba(212,201,104,0.9) 36%, rgba(212,201,104,0.55) 50%, rgba(255,255,255,0) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4c968', endColorstr='#ffffff', GradientType=1 );
+>>>>>>> branch 'jiun' of https://github.com/bnb1212/TeamProject_Django
 }
 
 html {
