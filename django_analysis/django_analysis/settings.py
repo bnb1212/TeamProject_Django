@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainApp',
     'testApp',
-    'SeoulEdu',
 ]
 
 MIDDLEWARE = [
@@ -108,13 +107,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -122,6 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_DIRS = (
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
