@@ -4,5 +4,3 @@ from django.shortcuts import render
 def indexFunc(request):
     return render(request, "index.html")
 
-def joeyPageFunc(request):
-    return render(request, "properties-single.html")
