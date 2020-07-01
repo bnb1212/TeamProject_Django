@@ -347,8 +347,9 @@ h1, h2, h3, h4, h5,
 	.overlay-2{
 		z-index: -2;
 		background: $primary;
+		@include gradient-background-two();
 		opacity: .7;
-		width: 100%;
+		width: 50%;
 	}
 	&.hero-wrap-2{
 		height: 700px !important;
