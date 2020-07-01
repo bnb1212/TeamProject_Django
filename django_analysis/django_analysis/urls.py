@@ -20,4 +20,5 @@ from mainApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.indexFunc),
+    path('joey', views.joeyPageFunc),
 ]
