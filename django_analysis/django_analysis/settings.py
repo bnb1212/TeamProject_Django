@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainApp',
-    'testApp'
+    'testApp',
 ]
 
 MIDDLEWARE = [
@@ -105,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-# 한국시간
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Seoul'
@@ -122,6 +121,6 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATICSTATICFILES_DIRS = (
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     )
