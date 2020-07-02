@@ -21,5 +21,6 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.indexFunc),
-    path('edu/',include('SeoulEdu.urls')),
+    path('edu/', include('SeoulEdu.urls')),
+    path('garbage/', include('seoulGarbage.urls'))
 ]
