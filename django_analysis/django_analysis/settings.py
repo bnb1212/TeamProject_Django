@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mainApp',
     'testApp',
     'SeoulEdu',
+    'seoulsafe',
 ]
 
 MIDDLEWARE = [
