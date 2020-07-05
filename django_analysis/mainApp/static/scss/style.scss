@@ -1,3 +1,5 @@
+// 파일마다 bootstrap scss파일에 하나씩 넣어두었는데 나중에 경로 통일 
+
 @import 'bootstrap/bootstrap';
 @import 'bootstrap/variables';
 
@@ -107,7 +109,7 @@ h1, h2, h3, h4, h5,
 	.navbar-brand {
 		color: $white;
 		&:hover{
-			color: #5685D2;
+			color: $primary;
 		}
 		@include media-breakpoint-down(md){
 			color: $white;
@@ -125,7 +127,7 @@ h1, h2, h3, h4, h5,
 				padding-bottom: .9rem;
 				padding-left: 20px;
 				padding-right: 20px;
-				color: $black;
+				color: $white;
 				font-weight: 600;
 				&:hover {
 					color: $primary;
@@ -339,15 +341,14 @@ h1, h2, h3, h4, h5,
 		bottom: 0;
 		content: '';
 		opacity: 1;
-		background: $white;
-		@include gradient-background();
+		background: transparent;
 		height: 850px;
 		z-index: -1;
 	}
 	.overlay-2{
 		z-index: -2;
-		background: $primary;
-		opacity: .7;
+		background: transparent;
+		opacity: 1;
 		width: 100%;
 	}
 	&.hero-wrap-2{
@@ -2526,3 +2527,4 @@ textarea.form-control {
     stroke-dashoffset: -136px;
   }
 }
+
