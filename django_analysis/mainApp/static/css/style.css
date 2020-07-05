@@ -10451,12 +10451,12 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-navbar-light .navbar-brand:hover {
-  color: #000000;
+  color: #5685D2;
 }
 
 @media (max-width: 991.98px) {
   .ftco-navbar-light .navbar-brand {
-    color: #fff;
+    color: #5685D2;
   }
 }
 

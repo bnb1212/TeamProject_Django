@@ -105,9 +105,9 @@ h1, h2, h3, h4, h5,
 	}
 
 	.navbar-brand {
-		color: $black;
+		color: $white;
 		&:hover{
-			color: $black;
+			color: #5685D2;
 		}
 		@include media-breakpoint-down(md){
 			color: $white;
