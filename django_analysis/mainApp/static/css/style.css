@@ -4337,7 +4337,6 @@ input[type="button"].btn-block {
 }
 
 .nav-link {
-  color: white;
   display: block;
   padding: 0.5rem 1rem;
 }
@@ -4778,7 +4777,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-brand {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
@@ -10447,11 +10446,11 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-navbar-light .navbar-brand {
-  color: #ffffff;
+  color: #fff;
 }
 
 .ftco-navbar-light .navbar-brand:hover {
-  color: #000000;
+  color: #5685D2;
 }
 
 @media (max-width: 991.98px) {
@@ -10472,7 +10471,7 @@ h1, h2, h3, h4, h5,
   padding-bottom: .9rem;
   padding-left: 20px;
   padding-right: 20px;
-  color: #ffffff;
+  color: #fff;
   font-weight: 600;
   opacity: 1 !important;
 }
@@ -10692,19 +10691,15 @@ h1, h2, h3, h4, h5,
   bottom: 0;
   content: '';
   opacity: 1;
-  /*background: #fff;
-  background: rgba(255, 255, 255, 0.71);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.71)), color-stop(50%, rgba(255, 255, 255, 0)), color-stop(100%, white));
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.71)), color-stop(50%, rgba(255, 255, 255, 0)), to(white));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.71) 0%, rgba(255, 255, 255, 0) 50%, white 100%);*/
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0 );
+  background: transparent;
   height: 850px;
   z-index: -1;
 }
 
 .hero-wrap .overlay-2 {
   z-index: -2;
-  opacity: .2;
+  background: transparent;
+  opacity: 1;
   width: 100%;
 }
 
@@ -11979,11 +11974,11 @@ textarea.form-control {
 }
 
 .ftco-footer a {
-  color: #000000;
+  color: #5685D2;
 }
 
 .ftco-footer a:hover {
-  color: #ffffff;
+  color: #5685D2;
 }
 
 .ftco-footer .ftco-heading-2 {
