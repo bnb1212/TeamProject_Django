@@ -16,7 +16,6 @@ Including another URLconf
 from django.urls import path
 from seoulGarbage import views
 
-
 urlpatterns = [
-    path('/', views.mainFunc),
+    path('main', views.mainFunc),
 ]
