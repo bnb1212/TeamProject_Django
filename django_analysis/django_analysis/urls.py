@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.indexFunc),
     path('edu/',include('SeoulEdu.urls')),
+    path('safe/', include('seoulsafe.urls'))
 ]
