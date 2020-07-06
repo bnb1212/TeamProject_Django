@@ -11,3 +11,5 @@ def main1Func(request):
 
 def joy1():
     print('joyjojojo')
+    # 범주형, 연속형자료 어디에 속하는지 알아야함
+    # 독립은 하나인데 종속이 여러개
