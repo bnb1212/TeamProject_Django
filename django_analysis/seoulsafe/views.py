@@ -36,9 +36,9 @@ def crimeFunc(request):
     # data_1 = data_1.astype(float)
     print(data_1)
     
-    # 시각화 (bar chart)
-    x_data = [0, 1, 2, 3]
-    y_data = [x ** 2 for x in x_data]
+    # 시각화 (line chart)
+    x_data = data.iloc[:, 0] 
+    y_data = data.iloc[:, 1]
     plot_div = plot([Scatter(x=x_data, y=y_data,
                         mode='lines', name='test',
                         opacity=0.8, marker_color='green')],
@@ -46,4 +46,7 @@ def crimeFunc(request):
     
     df_tohtml = data_1.to_html(classes=["table", "table-sm", "table-striped", "table-hover"])
     return render(request, 'report-crime.html', {'df':df_tohtml, 'plot_div':plot_div})
+
     
+def crimeLineChart(x, y):
+    pass

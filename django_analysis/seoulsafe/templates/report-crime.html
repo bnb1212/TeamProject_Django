@@ -80,22 +80,22 @@
 	<section class="ftco-section ftco-property-details">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<div class="property-details">
 						<div>{{df|safe}}</div>
-						<div class="text">
-							<h2>Green Valey Home</h2>
-							<span class="subheading">2854 Meadow View Drive, Hartford,
-								USA</span>
-						</div>
 					</div>
 				</div>
+			</div>
+			<div class="row justify-content-center">
 				<div class='col-md-6'>
 					<div class="property-details">
-						{% autoescape off%}
-						{{plot_div}}
-						{% endautoescape %}
+						{{plot_div|safe}}
 					</div>
+				</div>
+				<div class="text">
+						<h2>Green Valey Home</h2>
+						<span class="subheading">2854 Meadow View Drive, Hartford,
+							USA</span>
 				</div>
 			</div>
 			<!-- main image -->
