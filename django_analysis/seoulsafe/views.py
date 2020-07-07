@@ -68,7 +68,7 @@ def crimeFunc(request):
 def crimeLineChart(data, x_value, y_value, title):
     line_fig = px.line(data, x=x_value, y=y_value,
                     hover_name=x_value,
-                    title=title)
+                    title=title, )
     
     return plot(line_fig, output_type='div')
 
