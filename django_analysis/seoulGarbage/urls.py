@@ -18,4 +18,5 @@ from seoulGarbage import views
 
 urlpatterns = [
     path('main', views.mainFunc),
+    path('startajax', views.Func1)
 ]
