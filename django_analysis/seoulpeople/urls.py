@@ -19,5 +19,6 @@ from seoulpeople import views
 
 urlpatterns = [
     path('', views.main_Func),
-    path('people/', views.list_Func),
+    path('list/', views.list_Func),
+    path('list/yearFM', views.yearFM_Func),
 ]

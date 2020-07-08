@@ -7,6 +7,7 @@ import plotly.express as px
 from plotly.graph_objs import Scatter, Layout
 import plotly.graph_objects as go
 import plotly.express as px
+from django.http.response import HttpResponse
 
 # Create your views here.
 
@@ -29,7 +30,7 @@ def list_Func(request):
     
     
     year_sum = data[data['자치구'] == '합계']
-    print(year_sum)
+    #print(year_sum)
     
     #print(data_Mmin)
     #print(data_Fmin)
@@ -78,12 +79,54 @@ def list_Func(request):
     )
     plot_div_bar = plot(bar_fig, output_type='div')
     
-    '''
-    plot_div = px.line(data1, x="자치구", y=["남자합계","여자합계"],
-                    title="지역별 남자 여자 합계")
-    plot_div_line = plot(plot_div, output_type='div')
-    '''
-    df_tohtml = data_sum.to_html(classes=["table", "table-sm", "table-striped", "table-hover"])
+
     
     # return render(request, 'report-crime.html', {'df':df_tohtml, 'plot_div':plot_div})
-    return render(request, 'report-people.html', {'df':df_tohtml,'plot_div_bar':plot_div_bar,'plot_div_bar1':plot_div_bar1})
+    return render(request, 'report-people.html', {'plot_div_bar':plot_div_bar})
+
+def yearFM_Func(request):
+    year = request.GET['year']
+    year = int(year)
+    #print(year)
+    
+    data = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulpeople\\files\\report.xlsx', encoding='utf-8')
+    data1 = data[data['자치구'] != '합계']
+    #print(data1)
+    data1 = data1[data1['기간'] ==  year] 
+    print(data1)
+    
+    data_label = ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구',
+                  '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구',
+                  '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구',
+                  '은평구', '종로구', '중구', '중랑구']
+    #print(data1)
+    
+    label=data_label
+    
+    data_Mmin = data1.groupby('자치구').남자합계.sum()
+    data_Fmin = data1.groupby('자치구').여자합계.sum()
+    print(data_Mmin)
+    
+    fig = go.Figure(data=[
+    go.Bar(name='남자', x=label, y=data_Mmin),
+    go.Bar(name='여자', x=label, y=data_Fmin)
+    ])
+    
+    fig.update_layout(barmode='group', title=str(year)+"년 남자,여자의 수")
+    plot_div_bar = plot(fig, output_type='div')
+
+    return HttpResponse(plot_div_bar)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

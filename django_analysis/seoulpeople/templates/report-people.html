@@ -31,6 +31,38 @@
 <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
 <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
 <link rel="stylesheet" href="{% static 'seoulsafe/css/style.css' %}">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//alert('1')
+	$("#showg").click(function(){
+		//alert('a')
+		var year = $("#year").val()
+		year = parseInt(year)
+		
+		if(year >= 1992 && year <= 2019 ){
+			$("#show2").empty()
+			$.ajax({
+				url:'yearFM',
+				type:'get',
+				data:{'year':year},
+				success:function(data){
+					$("#show2").html(data)
+					
+					
+				},
+				error:function(){
+					$("#show2").text("에러")
+				}
+				
+			})
+			
+		}else{
+			alert('1992 - 2019년 까지 입력하세요')
+		}
+	})
+})
+</script>
 </head>
 <body>
 
@@ -65,7 +97,7 @@
 			<div
 				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-					<h1 class="mb-3 bread">서울 연도에 따른 인구 분석</h1>
+					<h1 class="mb-3 bread" style='color:black'>서울 연도에 따른 인구 분석</h1>
 					<p class="breadcrumbs">
 						<span class="mr-2"><a href="crime">메인 <i
 								class="ion-ios-arrow-forward"></i></a></span> <span>인구 분석
@@ -82,8 +114,8 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="property-details">
-						{{plot_div_bar1|safe}}
-						<input type="">					
+						<!--{{plot_div_bar1|safe}} -->
+						{{plot_div_bar|safe}}
 						<!--
 						<div class="text">
 							<h2></h2>
@@ -93,8 +125,12 @@
 					</div>
 				</div>
 				<div class='col-md-12'>
-					<div class="property-details">
-						{{plot_div_bar|safe}}
+					<div class="property-details"  style="padding-left: 4rem">
+						<div id=show1>
+						년도별 남여의 수: <input type="number" placeholder=" 1992-2019" id='year'> <input type="button" class="btn btn-primary" name= "yearFM" value="확인" id='showg'>
+						</div>
+					</div>
+					<div id=show2>
 					</div>
 				</div>
 			</div>
