@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.indexFunc),
 #     path('joey', views.joeyPageFunc),
     path('edu/',include('SeoulEdu.urls')),
-    path('safe/', include('seoulsafe.urls'))
+    path('safe/', include('seoulsafe.urls')),
+    path('people/', include('seoulpeople.urls')),
 ]

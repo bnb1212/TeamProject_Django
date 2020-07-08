@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'testApp',
     'SeoulEdu',
     'seoulsafe',
+    'seoulpeople',
 ]
 
 MIDDLEWARE = [
