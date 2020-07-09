@@ -42,6 +42,13 @@
           box-sizing: border-box;
 }
 
+
+@font-face {
+  font-family: "SpoqaHanSans";
+  src: url("../fonts/custom/Spoqa Han Sans Regular.ttf") format("ttf");
+  font-style: normal;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -13079,4 +13086,5 @@ textarea.form-control {
     stroke-dashoffset: -136px;
   }
 }
+
 /*# sourceMappingURL=style.css.map */

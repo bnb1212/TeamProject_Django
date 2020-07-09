@@ -18,5 +18,6 @@ from seoulsafe import views
 
 urlpatterns = [
     path('', views.mainFunc),
-    path('crime/', views.crimeFunc)
+    path('crime/', views.crimeFunc),
+    path('crime/predCount',views.predCrimeFunc)
 ]
