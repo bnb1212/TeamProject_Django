@@ -18,5 +18,6 @@ from SeoulEdu import views
 
 
 urlpatterns = [
-    path('main', views.mainFunc),
+    path('list', views.listFunc),
+    path('main1', views.main1Func),
 ]
