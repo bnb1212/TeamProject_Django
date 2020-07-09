@@ -76,8 +76,8 @@ $(document).ready(function(){
 				type:'get',
 				data:{'f':f, 'gu':gu},
 				success:function(data){
-					var mht = "<br>" + f + "년" + gu + "구 남자수 예측은" + "<b>" + data['m'] + "</b>" + "입니다."
-					var fht = "<br>" + f + "년" + gu + "구 여자수 예측은" + "<b>" + data['f'] + "</b>" + "입니다."
+					var mht = f + "년 " + gu + "구 남자수 예측은" + "<b>" + data['m'] + "</b>" + "입니다."
+					var fht = "<br>" + f + "년 " + gu + "구 여자수 예측은" + "<b>" + data['f'] + "</b>" + "입니다."
 					
 					$("#show3").html(mht+fht)
 					//$("#show3").html(f)
@@ -112,10 +112,7 @@ $(document).ready(function(){
 			</button>
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-					<li class="nav-item active"><a href="properties.html"
-						class="nav-link">Listing</a></li>
+				<ul class="navbar-nav ml-auto">	
 				</ul>
 			</div>
 		</div>
@@ -132,12 +129,6 @@ $(document).ready(function(){
 				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
 					<h1 class="mb-3 bread" style='color:black'>서울 연도에 따른 인구 분석</h1>
-					<p class="breadcrumbs">
-						<span class="mr-2"><a href="crime">메인 <i
-								class="ion-ios-arrow-forward"></i></a></span> <span>인구 분석
-							<i class="ion-ios-arrow-forward"></i>
-						</span>
-					</p>
 				</div>
 			</div>
 		</div>
@@ -196,43 +187,12 @@ $(document).ready(function(){
 							<div class="tab-pane fade show active" id="pills-description"
 								role="tabpanel" aria-labelledby="pills-description-tab">
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md">
 										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Lot
-												Area: 1,250 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Bed
-												Rooms: 4</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Bath
-												Rooms: 4</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Luggage</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Garage:
-												2</li>
-										</ul>
-									</div>
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Floor
-												Area: 1,300 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Year
-												Build:: 2019</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Water</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Stories:
-												2</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Roofing:
-												New</li>
-										</ul>
-									</div>
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Floor
-												Area: 1,300 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Year
-												Build:: 2019</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Water</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Stories:
-												2</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Roofing:
-												New</li>
+											<li class="check"><span class="ion-ios-checkmark-circle"></span>서울시 인구의 총합은 언제나 비슷비슷하다는걸 알 수 있다.</li>
+											<li class="check"><span class="ion-ios-checkmark-circle"></span>서울시의 기간별 남여 평균은 처음엔 남자가 우세했지만 점점 여자가 더 많아지고 있다는걸 알 수 있다.</li>
+											<li class="check"><span class="ion-ios-checkmark-circle"></span>R2 Score는 약 50~60%인걸 알 수 있다</li>
+											<li class="check"><span class="ion-ios-checkmark-circle"></span>출처 - 서울 열린데이터광장</li>
 										</ul>
 									</div>
 								</div>
@@ -240,41 +200,48 @@ $(document).ready(function(){
 							<!-- 조건 -->
 							<div class="tab-pane fade" id="pills-manufacturer"
 								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-								<div>
-								<select id="gu" clas="form-control">
-    							<option value="">구 선택</option>
-    							<option value="강남">강남구</option>
-    							<option value="강동">강동구</option>
-    							<option value="강북">강서구</option>
-    							<option value="강서">강서구</option>
-    							<option value="관악">관악구</option>
-    							<option value="광진">광진구</option>
-    							<option value="구로">구로구</option>
-    							<option value="금천">금천구</option>
-    							<option value="노원">노원구</option>
-    							<option value="도봉">도봉구</option>
-    							<option value="동대문">동대문구</option>
-    							<option value="동작">동작구</option>
-    							<option value="마포">마포구</option>
-    							<option value="서대문">서대문구</option>
-    							<option value="서초">서초구</option>
-    							<option value="성동">성동구</option>
-    							<option value="성북">성북구</option>
-    							<option value="송파">송파구</option>
-    							<option value="양천">양천구</option>
-    							<option value="영등포">영등포구</option>
-    							<option value="용산">용산구</option>
-    							<option value="은평">은평구</option>
-    							<option value="종로">종로구</option>
-    							<option value="중구">종구</option>
-    							<option value="중랑구">중랑구</option>
+								<div class="row">
+								<div class="col-md-3">
+								<select id="gu" class="form-control">
+    								<option value="">구 선택</option>
+    								<option value="강남">강남구</option>
+    								<option value="강동">강동구</option>
+    								<option value="강북">강서구</option>
+    								<option value="강서">강서구</option>
+    								<option value="관악">관악구</option>
+    								<option value="광진">광진구</option>
+    								<option value="구로">구로구</option>
+    								<option value="금천">금천구</option>
+    								<option value="노원">노원구</option>
+    								<option value="도봉">도봉구</option>
+    								<option value="동대문">동대문구</option>
+    								<option value="동작">동작구</option>
+    								<option value="마포">마포구</option>
+    								<option value="서대문">서대문구</option>
+    								<option value="서초">서초구</option>
+    								<option value="성동">성동구</option>
+    								<option value="성북">성북구</option>
+    								<option value="송파">송파구</option>
+    								<option value="양천">양천구</option>
+    								<option value="영등포">영등포구</option>
+    								<option value="용산">용산구</option>
+    								<option value="은평">은평구</option>
+    								<option value="종로">종로구</option>
+    								<option value="중구">종구</option>
+    								<option value="중랑구">중랑구</option>
 								</select>
-								
-								<input type="number" placeholder=" 2020 ~" id='future_num'>
-								<input type="button" class="btn btn-primary" value="확인" id='showf'>
 								</div>
-								<div id='show3'>
+								<div class="col-md-4">
+								<input type="number" class="form-control" placeholder=" 2020 ~" id='future_num'>
+								</div>
+								<div class="col-md-2">
+									<input type="button" class="form-control btn btn-primary" value="확인" id='showf'>
+								</div>
+								</div>
+								<div class="row text-center" style="padding:2em">
+								<div class="col-md" id='show3' style="font-size:2em">
 									<!-- 추측값 나오는곳 -->
+								</div>
 								</div>
 							</div>
 							<!-- 설명 -->
