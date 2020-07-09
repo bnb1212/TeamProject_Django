@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.indexFunc),
     path('edu/',include('SeoulEdu.urls')),
+    path('safe/', include('seoulsafe.urls')),
+    path('people/', include('seoulpeople.urls')),
     path('garbage/', include('seoulGarbage.urls')),
-    path('safe/', include('seoulsafe.urls'))
 ]

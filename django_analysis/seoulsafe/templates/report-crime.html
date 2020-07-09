@@ -9,6 +9,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
 	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+
 
 <link rel="stylesheet"
 	href="{% static 'css/open-iconic-bootstrap.min.css' %}">
@@ -31,6 +35,9 @@
 <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
 <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
 <link rel="stylesheet" href="{% static 'seoulsafe/css/style.css' %}">
+
+
+
 </head>
 <body>
 
@@ -57,7 +64,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
-		style="background-image: url({% static 'seoulsafe/images/safe_bg.png' %});"
+		style="background-image: url({% static 'seoulsafe/images/safe_bg.png' %}"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="overlay-2"></div>
@@ -65,11 +72,13 @@
 			<div
 				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-					<h1 class="mb-3 bread">서울 연도별 범죄 발생 분석</h1>
+					<h1 class="mb-3 bread"
+						style="font-family: 'Noto Sans KR', sans-serif;">서울 연도별 범죄 발생
+						분석</h1>
 					<p class="breadcrumbs">
 						<span class="mr-2"><a href="crime">메인 <i
-								class="ion-ios-arrow-forward"></i></a></span> <span>범죄 발생 분석
-							<i class="ion-ios-arrow-forward"></i>
+								class="ion-ios-arrow-forward"></i></a></span> <span>범죄 발생 분석 <i
+							class="ion-ios-arrow-forward"></i>
 						</span>
 					</p>
 				</div>
@@ -81,21 +90,25 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6">
-					<div class="property-details">
+					<div class="property-details ftco-animate">
 						<div>{{df|safe}}</div>
-						<div class="text">
-							<h2>Green Valey Home</h2>
-							<span class="subheading">2854 Meadow View Drive, Hartford,
-								USA</span>
-						</div>
 					</div>
 				</div>
-				<div class='col-md-6'>
-					<div class="property-details">
-						{% autoescape off%}
-						{{plot_div}}
-						{% endautoescape %}
+				<div class="col-md-6">
+					<div class="property-details ftco-animate">
+						<div>{{plot_div_heat|safe}}</div>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class='col-md-6 ftco-animate'>
+					<div class="property-details">{{plot_div_line|safe}}</div>
+				</div>
+				<div class='col-md-6 ftco-animate'>
+					<div class="property-details">{{plot_div_bar|safe}}</div>
+				</div>
+				<div class="text">
+					<h5>자료 제공 : 서울 열린데이터 광장(https://data.seoul.go.kr/)</h5>
 				</div>
 			</div>
 			<!-- main image -->
@@ -108,73 +121,54 @@
 								<li class="nav-item"><a class="nav-link active"
 									id="pills-description-tab" data-toggle="pill"
 									href="#pills-description" role="tab"
-									aria-controls="pills-description" aria-expanded="true">Features</a>
-								</li>
+									aria-controls="pills-description" aria-expanded="true">미래
+										예측해보기</a></li>
 								<li class="nav-item"><a class="nav-link"
 									id="pills-manufacturer-tab" data-toggle="pill"
 									href="#pills-manufacturer" role="tab"
-									aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
-								</li>
+									aria-controls="pills-manufacturer" aria-expanded="true">데이터
+										설명</a></li>
 							</ul>
 						</div>
-			<!-- buttons -->
+						<!-- buttons -->
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-description"
 								role="tabpanel" aria-labelledby="pills-description-tab">
 								<div class="row">
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Lot
-												Area: 1,250 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Bed
-												Rooms: 4</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Bath
-												Rooms: 4</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Luggage</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Garage:
-												2</li>
-										</ul>
+									<div class="col-md-7">
+										<div class="search-wrap-1 ftco-animate">
+											<div class="row">
+												<div class="col-lg align-items-end">
+													<div class="form-group">
+														<label for="year">연도로 예측하기</label>
+														<div class="form-field">
+															<input type="number" class="form-control" min="1950"
+																max="2100" placeholder="1950-2100" id="predyear">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 align-self-end">
+													<div class="form-group">
+														<div class="form-field">
+															<input type="button" value="확인"
+																class="form-control btn btn-primary" id="btnPred">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Floor
-												Area: 1,300 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Year
-												Build:: 2019</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Water</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Stories:
-												2</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Roofing:
-												New</li>
-										</ul>
-									</div>
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Floor
-												Area: 1,300 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Year
-												Build:: 2019</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Water</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Stories:
-												2</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Roofing:
-												New</li>
-										</ul>
+									<div class="col-md-5">
+											<label for="#" id="lblYear"></label><br>
+											<label for="#" id="lblCount"></label>
 									</div>
 								</div>
 							</div>
 							<!-- 조건 -->
 							<div class="tab-pane fade" id="pills-manufacturer"
 								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-								<p>Even the all-powerful Pointing has no control about the
-									blind texts it is an almost unorthographic life One day however
-									a small line of blind text by the name of Lorem Ipsum decided
-									to leave for the far World of Grammar.</p>
-								<p>When she reached the first hills of the Italic Mountains,
-									she had a last view back on the skyline of her hometown
-									Bookmarksgrove, the headline of Alphabet Village and the
-									subline of her own road, the Line Lane. Pityful a rethoric
-									question ran over her cheek, then she continued her way.</p>
+								<p>데이터 최신 수정 일자 : 2019-06-10</p>
+								<p>데이터는 매년 갱신됩니다</p>
 							</div>
 							<!-- 설명 -->
 							<!-- 리뷰 -->
@@ -199,7 +193,7 @@
 						</script>
 						All rights reserved | This template is made with <i
 							class="icon-heart color-danger" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" color="black"target="_blank">Colorlib</a>
+							href="https://colorlib.com" color="black" target="_blank">Colorlib</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>
@@ -218,7 +212,7 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none"
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
-<!-- Script -->
+	<!-- Script -->
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 	<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
 	<script src="{% static 'js/popper.min.js' %}"></script>
@@ -235,6 +229,30 @@
 	<script src="{% static 'js/scrollax.min.js' %}"></script>
 
 	<script src="{% static 'js/main.js' %}"></script>
+
+	<script type="text/javascript">
+	$("#btnPred").click(function(){
+		var year=$("#predyear").val()
+		year = parseInt(year)
+		
+		$("#lblYear").empty()
+		$("#lblCount").empty()
+		$.ajax({
+			url:'predCount',
+			type:'get',
+			data:{'year':year},
+			success:function(data){
+				$("#lblYear").html("<b style='font-size:1.5em'>"+year+"</b>년의 범죄발생 건수는");
+				$("#lblCount").html("<strong style='font-size:2em'>"+data['pred']+"</strong>건으로 예측됩니다.");
+				
+			},
+			error:function(){
+				$("#lblYear").text("에러");
+			}
+			
+		})
+	})
+</script>
 
 </body>
 </html>
