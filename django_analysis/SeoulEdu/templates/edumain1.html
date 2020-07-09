@@ -87,8 +87,23 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="property-details">
-						<div class="img rounded"
-							style="background-image: url({% static 'images/work-1.jpg' %});"></div>
+						{{plot_div_bar_mo|safe}}
+						<div class="text">
+							<h2>Green Valey Home</h2>
+							<span class="subheading">2854 Meadow View Drive, Hartford,
+								USA</span>
+						</div>
+					</div>
+					<div class="property-details">
+						{{plot_div_bar_pro|safe}}
+						<div class="text">
+							<h2>Green Valey Home</h2>
+							<span class="subheading">2854 Meadow View Drive, Hartford,
+								USA</span>
+						</div>
+					</div>
+					<div class="property-details">
+						{{plot_div_heat|safe}}
 						<div class="text">
 							<h2>Green Valey Home</h2>
 							<span class="subheading">2854 Meadow View Drive, Hartford,
@@ -107,16 +122,12 @@
 								<li class="nav-item"><a class="nav-link active"
 									id="pills-description-tab" data-toggle="pill"
 									href="#pills-description" role="tab"
-									aria-controls="pills-description" aria-expanded="true">Features</a>
+									aria-controls="pills-description" aria-expanded="true">예측하기</a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
 									id="pills-manufacturer-tab" data-toggle="pill"
 									href="#pills-manufacturer" role="tab"
-									aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
-								</li>
-								<li class="nav-item"><a class="nav-link"
-									id="pills-review-tab" data-toggle="pill" href="#pills-review"
-									role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
+									aria-controls="pills-manufacturer" aria-expanded="true">자료설명</a>
 								</li>
 							</ul>
 						</div>
@@ -125,172 +136,32 @@
 							<div class="tab-pane fade show active" id="pills-description"
 								role="tabpanel" aria-labelledby="pills-description-tab">
 								<div class="row">
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Lot
-												Area: 1,250 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Bed
-												Rooms: 4</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Bath
-												Rooms: 4</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Luggage</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Garage:
-												2</li>
-										</ul>
+									<div class="col-md-12">
+										<b style='font-size:1.5rem'>자치구 요소소득을 입력해보세요</b>
+										(1000000 ~ 100000000  단위:백)
 									</div>
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Floor
-												Area: 1,300 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Year
-												Build:: 2019</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Water</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Stories:
-												2</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Roofing:
-												New</li>
-										</ul>
-									</div>
-									<div class="col-md-4">
-										<ul class="features">
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Floor
-												Area: 1,300 SQ FT</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Year
-												Build:: 2019</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Water</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Stories:
-												2</li>
-											<li class="check"><span class="ion-ios-checkmark-circle"></span>Roofing:
-												New</li>
-										</ul>
-									</div>
+								</div> <!-- row를 두개 준거임!! -->
+								<div class="row" style="padding:0.5rem">
+									<div class="form-field">
+		          						<input type="number" id="money" class="form-control" placeholder="숫자입력">    
+				              		</div>
+				              		<div class="form-field">
+				                		<input type="button" value="예측결과 보기"  id='btn1' class="form-control btn btn-primary">
+				              		</div>
 								</div>
+								
 							</div>
+						</div>
 							<!-- 조건 -->
 							<div class="tab-pane fade" id="pills-manufacturer"
 								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-								<p>Even the all-powerful Pointing has no control about the
-									blind texts it is an almost unorthographic life One day however
-									a small line of blind text by the name of Lorem Ipsum decided
-									to leave for the far World of Grammar.</p>
-								<p>When she reached the first hills of the Italic Mountains,
-									she had a last view back on the skyline of her hometown
-									Bookmarksgrove, the headline of Alphabet Village and the
-									subline of her own road, the Line Lane. Pityful a rethoric
-									question ran over her cheek, then she continued her way.</p>
+								<p>자료출처</p>
+								<p>서울 열린 데이터 광장(https://data.seoul.go.kr/)</p>
+								<p>1. 자치구별 지역내총부가가치(2015년 기준)</p>
+								<p>2. 서울시 평생교육기관 개황 (구별) 통계</p>
 							</div>
 							<!-- 설명 -->
-							<div class="tab-pane fade" id="pills-review" role="tabpanel"
-								aria-labelledby="pills-review-tab">
-								<div class="row">
-									<div class="col-md-7">
-										<h3 class="head">23 Reviews</h3>
-										<div class="review d-flex">
-											<div class="user-img"
-												style="background-image: url({% static 'images/person_1.jpg' %});"></div>
-											<div class="desc">
-												<h4>
-													<span class="text-left">Jacob Webb</span> <span
-														class="text-right">17 October 2019</span>
-												</h4>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-													</span> <span class="text-right"><a href="#" class="reply"><i
-															class="icon-reply"></i></a></span>
-												</p>
-												<p>When she reached the first hills of the Italic
-													Mountains, she had a last view back on the skyline of her
-													hometown Bookmarksgrov</p>
-											</div>
-										</div>
-										<div class="review d-flex">
-											<div class="user-img"
-												style="background-image: url(images/person_2.jpg)"></div>
-											<div class="desc">
-												<h4>
-													<span class="text-left">Jacob Webb</span> <span
-														class="text-right">17 October 2019</span>
-												</h4>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-													</span> <span class="text-right"><a href="#" class="reply"><i
-															class="icon-reply"></i></a></span>
-												</p>
-												<p>When she reached the first hills of the Italic
-													Mountains, she had a last view back on the skyline of her
-													hometown Bookmarksgrov</p>
-											</div>
-										</div>
-										<div class="review d-flex">
-											<div class="user-img"
-												style="background-image: url(images/person_3.jpg)"></div>
-											<div class="desc">
-												<h4>
-													<span class="text-left">Jacob Webb</span> <span
-														class="text-right">17 October 2019</span>
-												</h4>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-													</span> <span class="text-right"><a href="#" class="reply"><i
-															class="icon-reply"></i></a></span>
-												</p>
-												<p>When she reached the first hills of the Italic
-													Mountains, she had a last view back on the skyline of her
-													hometown Bookmarksgrov</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-5">
-										<div class="rating-wrap">
-											<h3 class="head">Give a Review</h3>
-											<div class="wrap">
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-														(98%)
-													</span> <span>20 Reviews</span>
-												</p>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-														(85%)
-													</span> <span>10 Reviews</span>
-												</p>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-														(70%)
-													</span> <span>5 Reviews</span>
-												</p>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-														(10%)
-													</span> <span>0 Reviews</span>
-												</p>
-												<p class="star">
-													<span> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-														class="ion-ios-star"></i> <i class="ion-ios-star"></i>
-														(0%)
-													</span> <span>0 Reviews</span>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- 리뷰 -->
+							
 						</div>
 					</div>
 				</div>
