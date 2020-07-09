@@ -45,7 +45,7 @@ $(document).ready(function(){
 		//alert(msg)
 		
 		$("#showData1").empty()
-		$("#showData1").text("분석중입니다. 잠시만 기다려주세요.")
+		//$("#showData1").text("분석중입니다. 잠시만 기다려주세요.")
 		
 		$.ajax({
 			url:'startajax',
@@ -57,7 +57,9 @@ $(document).ready(function(){
 				//for(var k in data){
 				//	var str = k + "<br>" + data[k]
 				//}
-				var str = "<br><br>" + data['key']
+				//var str = "<br>" + data['key']
+				var str = "<h5 style='text-align: center; color: SteelBlue;'>" + data['key'] + "</h5>"
+				str += "<h6 style='text-align: center; color: SteelBlue;'>"+ "정확도 :" +data['acc'] +  "%" +"</h6>" 
 				$("#showData1").html(str)
 			},
 			error:function(){
@@ -109,7 +111,7 @@ $(document).ready(function(){
 			<div
 				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-					<h1 class="mb-3 bread" style="color:Ivory;">서울 쓰레기 발생 통계를 활용한<br> 환경 데이터 분석/예측 </h1>
+					<h1 class="mb-3 bread" style="color:Ivory;">서울 쓰레기 발생 통계를 활용한<br> 환경 오염 분석/예측 </h1>
 					<p class="breadcrumbs">
 						<span class="mr-2"><a href="index.html">Home <i
 								class="ion-ios-arrow-forward"></i></a></span> <span>Properties
