@@ -21,4 +21,5 @@ urlpatterns = [
     path('', views.main_Func),
     path('list/', views.list_Func),
     path('list/yearFM', views.yearFM_Func),
+    path('list/future', views.future_Func)
 ]
