@@ -86,17 +86,22 @@
 	<section class="ftco-section ftco-property-details">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="property-details">
+				<div class="col-md-6">
+					<div class="property-details ftco-animate">
 						<div>{{df|safe}}</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="property-details ftco-animate">
+						<div>{{plot_div_heat|safe}}</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class='col-md-6'>
+				<div class='col-md-6 ftco-animate'>
 					<div class="property-details">{{plot_div_line|safe}}</div>
 				</div>
-				<div class='col-md-6'>
+				<div class='col-md-6 ftco-animate'>
 					<div class="property-details">{{plot_div_bar|safe}}</div>
 				</div>
 				<div class="text">
@@ -129,96 +134,29 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="search-wrap-1 ftco-animate">
-											<form action="#" class="search-property-1">
-												<div class="row">
-													<div class="col-lg align-items-end">
-														<div class="form-group">
-															<label for="#">Location</label>
+											<div class="row">
+												<div class="col-lg-3 align-items-end">
+													<div class="form-group">
+														<label for="year">연도로 예측하기</label>
 															<div class="form-field">
-																<div class="icon">
-																	<span class="ion-ios-search"></span>
-																</div>
-																<input type="text" class="form-control"
-																	placeholder="City/Locality Name">
+																<input type="number" class="form-control" min="1950" max="2100"
+																	placeholder="1950-2100">
 															</div>
 														</div>
 													</div>
-													<div class="col-lg align-items-end">
-														<div class="form-group">
-															<label for="#">Property Type</label>
-															<div class="form-field">
-																<div class="select-wrap">
-																	<div class="icon">
-																		<span class="ion-ios-arrow-down"></span>
-																	</div>
-																	<select name="" id="" class="form-control">
-																		<option value="">Type</option>
-																		<option value="">Commercial</option>
-																		<option value="">- Office</option>
-																		<option value="">Residential</option>
-																		<option value="">Villa</option>
-																		<option value="">Condominium</option>
-																		<option value="">Apartment</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg align-items-end">
-														<div class="form-group">
-															<label for="#">Property Status</label>
-															<div class="form-field">
-																<div class="select-wrap">
-																	<div class="icon">
-																		<span class="ion-ios-arrow-down"></span>
-																	</div>
-																	<select name="" id="" class="form-control">
-																		<option value="">Type</option>
-																		<option value="">Rent</option>
-																		<option value="">Sale</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg align-items-end">
-														<div class="form-group">
-															<label for="#">Price Limit</label>
-															<div class="form-field">
-																<div class="select-wrap">
-																	<div class="icon">
-																		<span class="ion-ios-arrow-down"></span>
-																	</div>
-																	<select name="" id="" class="form-control">
-																		<option value="">$5,000</option>
-																		<option value="">$10,000</option>
-																		<option value="">$50,000</option>
-																		<option value="">$100,000</option>
-																		<option value="">$200,000</option>
-																		<option value="">$300,000</option>
-																		<option value="">$400,000</option>
-																		<option value="">$500,000</option>
-																		<option value="">$600,000</option>
-																		<option value="">$700,000</option>
-																		<option value="">$800,000</option>
-																		<option value="">$900,000</option>
-																		<option value="">$1,000,000</option>
-																		<option value="">$2,000,000</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg align-self-end">
+													<div class="col-lg-2 align-self-end">
 														<div class="form-group">
 															<div class="form-field">
-																<input type="submit" value="Search Property"
+																<input type="button" value="Search Property"
 																	class="form-control btn btn-primary">
 															</div>
 														</div>
 													</div>
-												</div>
-											</form>
+													<div class="col-lg-7 align-items-end text-center">
+														<label for="#">- 년의 범죄 발생 건수는</label><br>
+														<strong>444</strong>건 입니다
+													</div>
+											 </div>
 										</div>
 									</div>
 								</div>
@@ -226,15 +164,8 @@
 							<!-- 조건 -->
 							<div class="tab-pane fade" id="pills-manufacturer"
 								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-								<p>Even the all-powerful Pointing has no control about the
-									blind texts it is an almost unorthographic life One day however
-									a small line of blind text by the name of Lorem Ipsum decided
-									to leave for the far World of Grammar.</p>
-								<p>When she reached the first hills of the Italic Mountains,
-									she had a last view back on the skyline of her hometown
-									Bookmarksgrove, the headline of Alphabet Village and the
-									subline of her own road, the Line Lane. Pityful a rethoric
-									question ran over her cheek, then she continued her way.</p>
+								<p>데이터 최신 수정 일자 : 2019-06-10</p>
+								<p>데이터는 매년 갱신됩니다</p>
 							</div>
 							<!-- 설명 -->
 							<!-- 리뷰 -->
