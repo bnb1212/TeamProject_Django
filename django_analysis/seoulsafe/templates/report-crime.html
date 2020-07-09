@@ -35,6 +35,9 @@
 <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
 <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
 <link rel="stylesheet" href="{% static 'seoulsafe/css/style.css' %}">
+
+
+
 </head>
 <body>
 
@@ -61,7 +64,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
-		style="background-image: url({% static 'seoulsafe/images/safe_bg.png' %})"
+		style="background-image: url({% static 'seoulsafe/images/safe_bg.png' %}"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="overlay-2"></div>
@@ -105,7 +108,7 @@
 					<div class="property-details">{{plot_div_bar|safe}}</div>
 				</div>
 				<div class="text">
-					<h5> 자료 제공 : 서울 열린데이터 광장(https://data.seoul.go.kr/) </h5>
+					<h5>자료 제공 : 서울 열린데이터 광장(https://data.seoul.go.kr/)</h5>
 				</div>
 			</div>
 			<!-- main image -->
@@ -132,32 +135,32 @@
 							<div class="tab-pane fade show active" id="pills-description"
 								role="tabpanel" aria-labelledby="pills-description-tab">
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-7">
 										<div class="search-wrap-1 ftco-animate">
 											<div class="row">
-												<div class="col-lg-3 align-items-end">
+												<div class="col-lg align-items-end">
 													<div class="form-group">
 														<label for="year">연도로 예측하기</label>
-															<div class="form-field">
-																<input type="number" class="form-control" min="1950" max="2100"
-																	placeholder="1950-2100">
-															</div>
+														<div class="form-field">
+															<input type="number" class="form-control" min="1950"
+																max="2100" placeholder="1950-2100" id="predyear">
 														</div>
 													</div>
-													<div class="col-lg-2 align-self-end">
-														<div class="form-group">
-															<div class="form-field">
-																<input type="button" value="Search Property"
-																	class="form-control btn btn-primary">
-															</div>
+												</div>
+												<div class="col-lg-3 align-self-end">
+													<div class="form-group">
+														<div class="form-field">
+															<input type="button" value="확인"
+																class="form-control btn btn-primary" id="btnPred">
 														</div>
 													</div>
-													<div class="col-lg-7 align-items-end text-center">
-														<label for="#">- 년의 범죄 발생 건수는</label><br>
-														<strong>444</strong>건 입니다
-													</div>
-											 </div>
+												</div>
+											</div>
 										</div>
+									</div>
+									<div class="col-md-5">
+											<label for="#" id="lblYear"></label><br>
+											<label for="#" id="lblCount"></label>
 									</div>
 								</div>
 							</div>
@@ -226,6 +229,30 @@
 	<script src="{% static 'js/scrollax.min.js' %}"></script>
 
 	<script src="{% static 'js/main.js' %}"></script>
+
+	<script type="text/javascript">
+	$("#btnPred").click(function(){
+		var year=$("#predyear").val()
+		year = parseInt(year)
+		
+		$("#lblYear").empty()
+		$("#lblCount").empty()
+		$.ajax({
+			url:'predCount',
+			type:'get',
+			data:{'year':year},
+			success:function(data){
+				$("#lblYear").html("<b style='font-size:1.5em'>"+year+"</b>년의 범죄발생 건수는");
+				$("#lblCount").html("<strong style='font-size:2em'>"+data['pred']+"</strong>건으로 예측됩니다.");
+				
+			},
+			error:function(){
+				$("#lblYear").text("에러");
+			}
+			
+		})
+	})
+</script>
 
 </body>
 </html>
