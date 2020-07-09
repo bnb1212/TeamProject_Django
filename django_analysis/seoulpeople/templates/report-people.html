@@ -30,7 +30,7 @@
 
 <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
 <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
-<link rel="stylesheet" href="{% static 'seoulsafe/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'seoulpeople/css/style.css' %}">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -130,14 +130,8 @@ $(document).ready(function(){
 		<div class="container">
 			<div
 				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-					<h1 class="mb-3 bread" style='color:black'>서울 연도에 따른 인구 분석</h1>
-					<p class="breadcrumbs">
-						<span class="mr-2"><a href="crime">메인 <i
-								class="ion-ios-arrow-forward"></i></a></span> <span>인구 분석
-							<i class="ion-ios-arrow-forward"></i>
-						</span>
-					</p>
+				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center rounded " style='background-color:rgba(115,75,72, 0.8)'>
+					<h1 class="mb-3 bread" style='padding:1em; color:#FFEAE7' >서울 연도에 따른 인구 분석</h1>
 				</div>
 			</div>
 		</div>
@@ -151,7 +145,6 @@ $(document).ready(function(){
 						<!--{{plot_div_bar1|safe}} -->
 						{{plot_div_bar|safe}}
 						{{plot_div|safe}}
-						
 						<!--
 						<div class="text">
 							<h2></h2>
