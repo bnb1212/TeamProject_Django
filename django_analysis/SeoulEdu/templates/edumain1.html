@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Findstate - Free Bootstrap 4 Template by Colorlib</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% load static %}
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet"
+	href="{% static 'css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+<link rel="stylesheet"
+	href="{% static 'css/bootstrap-datepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+<link rel="stylesheet" href="{% static 'SeoulEdu/css/style.css' %}">
+</head>
+<body>
+
+	<nav
+		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+		id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="/">Findstate</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#ftco-nav" aria-controls="ftco-nav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+					<li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
+					<li class="nav-item active"><a href="properties.html"
+						class="nav-link">Listing</a></li>
+					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+	<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
+		style="background-image: url({% static 'SeoulEdu/images/moneym.jpg' %});"
+		data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="overlay-2"></div>
+		<div class="container">
+			<div
+				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
+					<h1 class="mb-3 bread" style="color:White; font-size:80px;"">요소소득과 평생교육</h1>
+					<p class="breadcrumbs">
+						<span class="mr-2"><a href="index.html">Home <i
+								class="ion-ios-arrow-forward"></i></a></span> <span>Properties
+							Details<i class="ion-ios-arrow-forward"></i>
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Hero-wrap -->
+	<section class="ftco-section ftco-property-details">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="property-details">
+						{{plot_div_bar_mo|safe}}
+						<div class="text">
+							<h2>Green Valey Home</h2>
+							<span class="subheading">2854 Meadow View Drive, Hartford,
+								USA</span>
+						</div>
+					</div>
+					<div class="property-details">
+						{{plot_div_bar_pro|safe}}
+						<div class="text">
+							<h2>Green Valey Home</h2>
+							<span class="subheading">2854 Meadow View Drive, Hartford,
+								USA</span>
+						</div>
+					</div>
+					<div class="property-details">
+						{{plot_div_heat|safe}}
+						<div class="text">
+							<h2>Green Valey Home</h2>
+							<span class="subheading">2854 Meadow View Drive, Hartford,
+								USA</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- main image -->
+			<div class="row">
+				<div class="col-md-12 pills">
+					<div class="bd-example bd-example-tabs">
+						<div class="d-flex">
+							<ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
+
+								<li class="nav-item"><a class="nav-link active"
+									id="pills-description-tab" data-toggle="pill"
+									href="#pills-description" role="tab"
+									aria-controls="pills-description" aria-expanded="true">예측하기</a>
+								</li>
+								<li class="nav-item"><a class="nav-link"
+									id="pills-manufacturer-tab" data-toggle="pill"
+									href="#pills-manufacturer" role="tab"
+									aria-controls="pills-manufacturer" aria-expanded="true">자료설명</a>
+								</li>
+							</ul>
+						</div>
+			<!-- buttons -->
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-description"
+								role="tabpanel" aria-labelledby="pills-description-tab">
+								<div class="row">
+									<div class="col-md-12">
+										<b style='font-size:1.5rem'>자치구 요소소득을 입력해보세요</b>
+										(1000000 ~ 100000000  단위:백)
+									</div>
+								</div> <!-- row를 두개 준거임!! -->
+								<div class="row" style="padding:0.5rem">
+									<div class="form-field">
+		          						<input type="number" id="money" class="form-control" placeholder="숫자입력">    
+				              		</div>
+				              		<div class="form-field">
+				                		<input type="button" value="예측결과 보기"  id='btn1' class="form-control btn btn-primary">
+				              		</div>
+								</div>
+								
+							</div>
+						</div>
+							<!-- 조건 -->
+							<div class="tab-pane fade" id="pills-manufacturer"
+								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+								<p>자료출처</p>
+								<p>서울 열린 데이터 광장(https://data.seoul.go.kr/)</p>
+								<p>1. 자치구별 지역내총부가가치(2015년 기준)</p>
+								<p>2. 서울시 평생교육기관 개황 (구별) 통계</p>
+							</div>
+							<!-- 설명 -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End main section -->
+
+	<footer class="ftco-footer ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						All rights reserved | This template is made with <i
+							class="icon-heart color-danger" aria-hidden="true"></i> by <a
+							href="https://colorlib.com" color="black"target="_blank">Colorlib</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End footer -->
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke="#eeeeee" />
+			
+			<circle class="path" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+	</div>
+<!-- Script -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/aos.js' %}"></script>
+	<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+	<script src="{% static 'js/scrollax.min.js' %}"></script>
+
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
