@@ -64,7 +64,7 @@ $(document).ready(function(){
 	$("#showf").click(function(){
 		var f = $("#future_num").val()
 		f = parseInt(f)
-		gu = $("#gu").val()
+		var gu = $("#gu").val()
 		//alert(f)
 		//alert(gu)
 		
@@ -76,7 +76,11 @@ $(document).ready(function(){
 				type:'get',
 				data:{'f':f, 'gu':gu},
 				success:function(data){
-					//$("#show3").html(data)
+					var mht = "<br>" + f + "년" + gu + "구 남자수 예측은" + "<b>" + data['m'] + "</b>" + "입니다."
+					var fht = "<br>" + f + "년" + gu + "구 여자수 예측은" + "<b>" + data['f'] + "</b>" + "입니다."
+					
+					$("#show3").html(mht+fht)
+					//$("#show3").html(f)
 					
 					
 				},
@@ -183,7 +187,7 @@ $(document).ready(function(){
 								<li class="nav-item"><a class="nav-link"
 									id="pills-manufacturer-tab" data-toggle="pill"
 									href="#pills-manufacturer" role="tab"
-									aria-controls="pills-manufacturer" aria-expanded="true">미래의 서울시 남여 계산해보기</a>
+									aria-controls="pills-manufacturer" aria-expanded="true">미래의 서울시 남여 예측해보기</a>
 								</li>
 							</ul>
 						</div>
@@ -237,7 +241,7 @@ $(document).ready(function(){
 							<div class="tab-pane fade" id="pills-manufacturer"
 								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
 								<div>
-								<select id="gu">
+								<select id="gu" clas="form-control">
     							<option value="">구 선택</option>
     							<option value="강남">강남구</option>
     							<option value="강동">강동구</option>

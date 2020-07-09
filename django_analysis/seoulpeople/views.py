@@ -8,6 +8,14 @@ from plotly.graph_objs import Scatter, Layout
 import plotly.graph_objects as go
 import plotly.express as px
 from django.http.response import HttpResponse
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Activation
+from tensorflow.keras.optimizers import Adam
+from tensorflow.python.keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import ModelCheckpoint
+import json
+import numpy as np
 
 # 데이터 읽어오고 슬라이싱 및 공동 데이터
 data = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulpeople\\files\\report.xlsx', encoding='utf-8')
@@ -43,7 +51,6 @@ def list_Func(request):
     )
     plot_div_bar = plot(bar_fig, output_type='div')
     
-    createModel()
     
     return render(request, 'report-people.html', {'plot_div_bar':plot_div_bar, 'plot_div':plot_div})
 
@@ -73,18 +80,48 @@ def yearFM_Func(request):
 def future_Func(request):
     future = request.GET['f'] #아작스 값 가져오기
     gu = request.GET['gu']
-    future = int(future) #int로 변환
+    future = [[int(future)]] #int로 변환
     
-    
+    data = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulpeople\\files\\report.xlsx', encoding='utf-8')
+    all_data = data[data.자치구 == gu+"구"]
 
-def createModel(request):
-    '''
-    all_data = data1[all_data.자치구]
+    x = all_data.iloc[:, 0]
+    y = all_data.iloc[:, 3:5]
     
-    for len(data_label) in all_data:
-        
-    '''
-    
+    from sklearn.model_selection import train_test_split
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size= 0.3)
 
+    model = Sequential()
+    model.add(Dense(32, input_dim=1, activation='relu'))
+    model.add(Dense(64,activation='relu'))
+    model.add(Dense(128,activation='relu'))
+    model.add(Dense(256,activation='relu'))
+    model.add(Dense(128,activation='relu'))
+    model.add(Dense(64,activation='relu'))
+    model.add(Dense(32,activation='relu'))
+    model.add(Dense(2,activation='linear'))
+    
+    model.compile(optimizer='adam', loss='mse', metrics= ['acc'])
+
+    early_stop= tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience= 100)
+    history = model.fit(x_train, y_train, epochs= 1000, validation_split= 0.2, verbose= 0, callbacks= [early_stop])
+    
+    loss = model.evaluate(x_train, y_train, batch_size= 32)
+    #print('test_loss: ', loss)
+    
+    from sklearn.metrics import r2_score
+    #print('r2_score: ', r2_score(y_test, model.predict(x_test)))
+
+    pred = model.predict(future)
+    pred = pred.flatten()
+    #print('예측값: \n', pred)
+    m = int(pred[0])
+    f = int(pred[1])
+    
+    #print(m,f)
+    
+    data = {'m':m, 'f':f}
+    return HttpResponse(json.dumps(data), content_type='application/json')
+    
 
 
