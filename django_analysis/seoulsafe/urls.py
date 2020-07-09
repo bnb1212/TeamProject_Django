@@ -17,7 +17,6 @@ from django.urls import path
 from seoulsafe import views
 
 urlpatterns = [
-    path('', views.mainFunc),
-    path('crime/', views.crimeFunc),
-    path('crime/predCount',views.predCrimeFunc)
+    path('', views.crimeFunc),
+    path('predCount',views.predCrimeFunc)
 ]

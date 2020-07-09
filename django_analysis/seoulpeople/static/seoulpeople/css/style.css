@@ -10429,12 +10429,13 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-navbar-light {
-  background: transparent !important;
+  background: rgba(255,255,255, 0.8) !important;
   position: absolute;
   top: 20px;
   left: 0;
   right: 0;
   z-index: 3;
+  
 }
 
 @media (max-width: 991.98px) {

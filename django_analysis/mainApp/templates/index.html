@@ -52,8 +52,15 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="/"
 						class="nav-link">메인</a></li>
-					<li class="nav-item"><a href="servicelist" class="nav-link">리스트</a></li>
-					<li class="nav-item"><a href="ser.html" class="nav-link">게시판</a></li>
+					<li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					리스트</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          					<a class="dropdown-item" href="edu/main">교육</a>
+       				 	   <a class="dropdown-item" href="garbage/main">환경</a>
+       				 	   <a class="dropdown-item" href="safe/">안전</a>
+       				 	   <a class="dropdown-item" href="people/">인구</a>
+						</div>
+        			</li>
 				</ul>
 			</div>
 		</div>
@@ -70,12 +77,8 @@
 				<div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
 					<div class="text text-center w-100">
 						<h1 class="mb-4 text-light">
-							대한민국의 중심 <br>서울의 미래에 대해 araboja
+							대한민국의 중심 <br>서울의 미래
 						</h1>
-						<p>
-							<a href="#" class="btn btn-primary py-3 px-4">Search
-								Properties</a>
-						</p>
 					</div>
 				</div>
 			</div>
@@ -220,7 +223,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 					<span class="subheading">Service</span>
-					<h2 class="mb-2">서울을 데이터를 통해 알아보기</h2>
+					<h2 class="mb-2">서울을 데이터를 통해<br> 알아보기</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -318,28 +321,17 @@
 				<div class="col-md-6">
 					<div class="property-wrap ftco-animate">
 						<div class="img d-flex align-items-center justify-content-center"
-							style="background-image: url({% static 'images/work-3.jpg' %});">
+							style="background-image: url({% static 'images/safeseoul.jpg' %});">
 							<a href="safe/"
 								class="icon d-flex align-items-center justify-content-center btn-custom">
 								<span class="ion-ios-link"></span>
 							</a>
 							<div class="list-agent d-flex align-items-center">
-								<a href="#" class="agent-info d-flex align-items-center">
+								<a href="safe/" class="agent-info d-flex align-items-center">
 									<div class="img-2 rounded-circle"
-										style="background-image: url({% static 'images/person_1.jpg' %});"></div>
+										style="background-image: url({% static 'images/jiun.jpg' %});"></div>
 									<h3 class="mb-0 ml-2">이지운</h3>
 								</a>
-								<div class="tooltip-wrap d-flex">
-									<a href="#"
-										class="icon-2 d-flex align-items-center justify-content-center"
-										data-toggle="tooltip" data-placement="top" title="Bookmark">
-										<span class="ion-ios-heart"><i class="sr-only">Bookmark</i></span>
-									</a> <a href="#"
-										class="icon-2 d-flex align-items-center justify-content-center"
-										data-toggle="tooltip" data-placement="top" title="Compare">
-										<span class="ion-ios-eye"><i class="sr-only">Compare</i></span>
-									</a>
-								</div>
 							</div>
 						</div>
 						<div class="text">
@@ -349,11 +341,6 @@
 							<span class="location d-inline-block mb-3"><i
 								class="ion-ios-pin mr-2"></i>2854 Meadow View Drive, Hartford,
 								USA</span>
-							<ul class="property_list">
-								<li><span class="flaticon-bed"></span>3</li>
-								<li><span class="flaticon-bathtub"></span>2</li>
-								<li><span class="flaticon-floor-plan"></span>1,878 sqft</li>
-							</ul>
 						</div>
 					</div>
 				</div>
@@ -372,17 +359,6 @@
 										style="background-image: url({% static 'images/unknown.jpg' %});"></div>
 									<h3 class="mb-0 ml-2">Tae Jun Won</h3>
 								</a>
-								<div class="tooltip-wrap d-flex">
-									<a href="#"
-										class="icon-2 d-flex align-items-center justify-content-center"
-										data-toggle="tooltip" data-placement="top" title="Bookmark">
-										<span class="ion-ios-heart"><i class="sr-only">Bookmark</i></span>
-									</a> <a href="#"
-										class="icon-2 d-flex align-items-center justify-content-center"
-										data-toggle="tooltip" data-placement="top" title="Compare">
-										<span class="ion-ios-eye"><i class="sr-only">Compare</i></span>
-									</a>
-								</div>
 							</div>
 						</div>
 						<div class="text">
@@ -394,11 +370,6 @@
 							</h3>
 							<span class="location d-inline-block mb-3"><i
 								class="ion-ios-pin mr-2"></i>서울시 인구에 대해 아라보자</span>
-							<ul class="property_list">
-								<li><span class="flaticon-bed"></span>3</li>
-								<li><span class="flaticon-bathtub"></span>2</li>
-								<li><span class="flaticon-floor-plan"></span>1,878 sqft</li>
-							</ul>
 						</div>
 					</div>
 				</div>
@@ -520,8 +491,8 @@
 			<div class="row">
 				<div class="col-md-3 ftco-animate">
 					<div class="agent">
-						<div class="img">
-							<img src="{% static 'images/team-1.jpg' %}" class="img-fluid"
+						<div class="img border rounded">
+							<img src="{% static 'images/jiun.jpg' %}" class="img-fluid"
 								alt="Colorlib Template">
 						</div>
 						<div class="desc">
@@ -536,7 +507,7 @@
 				</div>
 				<div class="col-md-3 ftco-animate">
 					<div class="agent">
-						<div class="img">
+						<div class="img border rounded">
 							<img src="{% static 'images/unknown1.jpg' %}" class="img-fluid"
 								alt="Colorlib Template">
 						</div>
@@ -552,7 +523,7 @@
 				</div>
 				<div class="col-md-3 ftco-animate">
 					<div class="agent">
-						<div class="img">
+						<div class="img border rounded">
 							<img src="{% static 'images/team-2.jpg' %}" class="img-fluid"
 								alt="Colorlib Template">
 						</div>
@@ -568,7 +539,7 @@
 				</div>
 				<div class="col-md-3 ftco-animate">
 					<div class="agent">
-						<div class="img">
+						<div class="img border rounded">
 							<img src="{% static 'images/team-3.jpg' %}" class="img-fluid"
 								alt="Colorlib Template">
 						</div>
