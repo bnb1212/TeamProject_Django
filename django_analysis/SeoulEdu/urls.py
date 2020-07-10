@@ -19,5 +19,4 @@ from SeoulEdu import views
 
 urlpatterns = [
     path('main1', views.main1Func),
-    path('gopred', views.predFunc)
 ]

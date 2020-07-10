@@ -93,10 +93,10 @@ def mainFunc(request):
 
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     history = model.fit(x, y, validation_split=0.3, epochs=30, batch_size=10)#모델학습하면서 
-
     loss, acc = model.evaluate(x,y, verbose=0)
     print('훈련된  모델 정확도 : {:5.2f}%'.format(acc * 100))
     model.save('mnist_model.hdf5')
+    del model
 
     
     #return render(request, "edumain.html")
