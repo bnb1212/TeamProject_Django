@@ -58,9 +58,6 @@ dff = dff.dropna()
 dff['프로그램수'] /= 1000
 dff['요소소득'] /= 10000000
 
-def listFunc(request):
-    return render(request, "edulist.html")
-
 def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
     rc('font', family=font_name)
     plt.rcParams['axes.unicode_minus'] = False
@@ -192,3 +189,36 @@ def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Wi
 
     return render(request, "edumain1.html",{'plot_div_bar_mo':plot_div_bar,'plot_div_bar_pro':plot_div_bar2,'plot_div_heat':plot_div_heat})
 
+# 모델 생성
+def pred_model():
+    inputs = Input(shape=(1,))
+    output1 = Dense(64,activation='linear')(inputs)
+    output1 = Dense(128,activation='linear')(output1)
+    output1 = Dense(128,activation='linear')(output1)
+    output1 = Dense(128,activation='linear')(output1)
+    outputs = Dense(1,activation='linear')(output1)
+                   
+    model = Model(inputs,outputs) 
+                   
+    opti = optimizers.SGD(lr=0.001) # 이하 방법1과 동일
+    model.compile(opti,loss='mse',metrics='mse')
+
+    return model
+
+def predFunc(request):
+    
+    money = int(request.GET['money'])
+     
+    x_data = np.array(dff.요소소득,dtype = np.int32) 
+    y_data = np.array(dff.프로그램수, dtype=np.int32)
+    
+    # 모델 불러서 학습시킴
+    model = pred_model()            
+    model.fit(x = x_data, y=y_data,batch_size = 1, epochs = 150, verbose=3)
+    
+    # 설명력과 요청된 값의 예측값
+    r2_s = r2_score(y_data,model.predict(x_data))
+    pred_result = int(1000*model.predict(np.array([money/10000000],dtype = np.int32)))
+    
+    set = {'pred_result':pred_result, 'r2_s':int(r2_s*100)}
+    return HttpResponse(json.dumps(set), content_type='application/json')
