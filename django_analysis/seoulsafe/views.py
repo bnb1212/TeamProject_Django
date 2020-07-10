@@ -56,7 +56,7 @@ def crimeFunc(request):
     # 출력용 Dataframe
     df_line = data.iloc[::5, :3]
     
-    # 그래프 
+    # ------------------ 그래프 ------------------------------------------------
     # 상관계수 Heatmap 그리기
     heat_fig = px.imshow(data.corr(),
                          x=list(data.corr().columns),
@@ -141,7 +141,6 @@ def predCrime(data, input_x):
     train_stat = train_dataset.describe()
     train_stat.pop('합계발생')
     train_stat = train_stat.transpose()
-#     print(train_stat)
 
     # 분리된 dataset에서 label 뽑기
     train_labels = train_dataset.pop('합계발생')
@@ -154,7 +153,7 @@ def predCrime(data, input_x):
     model = build_model()
 
     # 학습 조기 종료 설정
-    early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)  # 같은 값이 30번 나오면 멈춰라
+    early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)  
     
     # 모델 훈련
     epochs = 1000
