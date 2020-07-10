@@ -46,7 +46,7 @@
 		class="navbar navbar-expand-lg navbar-light ftco_navbar bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="/">서울의 미래</a>
+			<a class="navbar-brand" href="/">미리서울 - 안전</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -116,9 +116,6 @@
 				<div class='col-md-6 ftco-animate'>
 					<div class="property-details">{{plot_div_bar|safe}}</div>
 				</div>
-				<div class="text">
-					<h5>자료 제공 : 서울 열린데이터 광장(https://data.seoul.go.kr/)</h5>
-				</div>
 			</div>
 			<!-- main image -->
 			<div class="row">
@@ -169,15 +166,19 @@
 									</div>
 									<div class="col-md-5">
 											<label for="#" id="lblYear"></label><br>
-											<label for="#" id="lblCount"></label>
+											<label for="#" id="lblCount"></label><br>
+											<label for="#" id="lblR2"></label>
 									</div>
 								</div>
 							</div>
 							<!-- 조건 -->
 							<div class="tab-pane fade" id="pills-manufacturer"
 								role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-								<p>데이터 최신 수정 일자 : 2019-06-10</p>
-								<p>데이터는 매년 갱신됩니다</p>
+								<ul class="features">
+									<li class="check"><span class="ion-ios-checkmark-circle"></span>연도에 따라 총 범죄 건수는 증가하는 추세이나, 2010년 대 들어 범죄건수가 감소하고 있다.</li>
+									<li class="check"><span class="ion-ios-checkmark-circle"></span>디지털시대에 따라 지능적인 범죄 등이 증가하고 있다.</li>
+									<li class="check"><span class="ion-ios-checkmark-circle"></span>출처 - 서울 열린데이터광장</li>
+								</ul>
 							</div>
 							<!-- 설명 -->
 							<!-- 리뷰 -->
@@ -247,6 +248,7 @@
 		
 		$("#lblYear").empty()
 		$("#lblCount").empty()
+		$("#lblR2").empty()
 		$.ajax({
 			url:'predCount',
 			type:'get',
@@ -254,6 +256,7 @@
 			success:function(data){
 				$("#lblYear").html("<b style='font-size:1.5em'>"+year+"</b>년의 범죄발생 건수는");
 				$("#lblCount").html("<strong style='font-size:2em'>"+data['pred']+"</strong>건으로 예측됩니다.");
+				$("#lblR2").html("<strong'>설명력은 "+data['r2s']+"</strong>입니다.");
 				
 			},
 			error:function(){

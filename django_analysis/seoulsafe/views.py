@@ -107,7 +107,7 @@ def predCrimeFunc(request):
     
     new_x, r2_s = predCrime(data, int(request.GET["year"]))
     print(new_x[0][0], r2_s)
-    context = {'pred':int(new_x[0][0]), 'r2_s':float(r2_s)}
+    context = {'pred':int(new_x[0][0]), 'r2s':f"{float(r2_s):%}"}
     print(context, type(context))
     print(json.dumps(context), ' ', type(json.dumps(context)))
     return HttpResponse(json.dumps(context), content_type='application/json')
@@ -182,6 +182,7 @@ def st_func(x, train_stat):
 def build_model():
     network = tf.keras.Sequential([
         layers.Dense(units=128, activation=tf.nn.relu, input_shape=[1]),
+        layers.Dense(128, activation='relu'),
         layers.Dense(128, activation='relu'),
         layers.Dense(128, activation='relu'),
         layers.Dense(128, activation='relu'),
