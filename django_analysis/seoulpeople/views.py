@@ -40,7 +40,7 @@ def list_Func(request):
     data_min['여자평균'] = data1.groupby('기간').여자합계.mean().values  # 기간별 여자 평균
 
     # 시각화
-    # 연도별 남여 평균  , 
+    # 연도별 남여 평균
     line_fig = px.line(data_min, x='기간', y=['남자평균', '여자평균'], title='기간별 남녀 평균')
     plot_div = plot(line_fig, output_type='div')
     
@@ -82,7 +82,7 @@ def yearFM_Func(request):
 def future_Func(request):
     future = request.GET['f']  # 아작스 값 가져오기
     gu = request.GET['gu']
-    future = [[int(future)]]  # int로 변환
+    future = [[int(future)]]
     
     data = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulpeople\\files\\report.xlsx', encoding='utf-8')
     all_data = data[data.자치구 == gu + "구"]
