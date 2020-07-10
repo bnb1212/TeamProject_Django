@@ -5,6 +5,9 @@ from plotly.offline import plot
 import matplotlib.pyplot as plt
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
+
+from tensorflow.keras import optimizers
+from sklearn.metrics import r2_score
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 from sklearn.preprocessing import MinMaxScaler, minmax_scale
@@ -15,45 +18,49 @@ from dask.dataframe.core import DataFrame
 from matplotlib import font_manager, rc
 import plotly.express as px
 import plotly.graph_objects as go
+from tensorflow.keras.layers import Input 
+from tensorflow.keras.models import Model
+import json
+from django.http.response import HttpResponse
 
-def listFunc(request):
-    return render(request, "edulist.html")
+df1 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllEdu.xlsx', encoding='utf-8') # 자치구별 평생교육 현황
+df2 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllMo.xlsx', encoding='utf-8') # 자치구별 총부가가치 자료
+
+#평생교육
+df1 = df1.loc[:,['기간','자치구','기관수','프로그램수','총 수강인원','프1000단']]
+index = df1[(df1['자치구']== '계')].index
+df1 = df1.drop(index)
+ 
+# 자치구별로 프로그램수의 평균을 구한다 
+grouped = df1['프로그램수'].groupby(df1['자치구'])
+fm = grouped.mean()
+a = df1.자치구.unique() 
+ 
+# # 총부가가치 
+df2['지역내총부가가치'] = df2['지역내총부가가치'].apply(pd.to_numeric,errors='coerce')
+df2 = df2[(df2['경제활동별']== '소계')]
+index = df2[(df2['자치구']== '서울시')].index
+df2 = df2.drop(index)
+index = df2[(df2['기간']== 2011)].index
+df2 = df2.drop(index)
+index = df2[(df2['기간']== 2017)].index
+df2 = df2.drop(index)
+index = df2[(df2['기간']== 2018)].index
+df2 = df2.drop(index)
+
+# df1,df2 합치기
+dff = pd.merge(df1,df2, how='left', left_on=['기간','자치구'], right_on = ['기간','자치구'])
+dff = dff.drop(['경제활동별'], axis='columns')
+dff = dff[['기관수','프로그램수','총 수강인원','지역내요소소득','지역내총부가가치']]
+dff.columns = ['기관수','프로그램수','총수강인원','요소소득','총부가가치']
+dff = dff.dropna()
+
+dff['프로그램수'] /= 1000
+dff['요소소득'] /= 10000000
 
 def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
     rc('font', family=font_name)
     plt.rcParams['axes.unicode_minus'] = False
-    
-    df1 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllEdu.xlsx', encoding='utf-8') # 자치구별 평생교육 현황
-    df2 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllMo.xlsx', encoding='utf-8') # 자치구별 총부가가치 자료
-    
-    #평생교육
-    df1 = df1.loc[:,['기간','자치구','기관수','프로그램수','총 수강인원','프1000단']]
-    index = df1[(df1['자치구']== '계')].index
-    df1 = df1.drop(index)
-     
-    # 자치구별로 프로그램수의 평균을 구한다 
-    grouped = df1['프로그램수'].groupby(df1['자치구'])
-    fm = grouped.mean()
-    a = df1.자치구.unique() 
-     
-    # # 총부가가치 
-    df2['지역내총부가가치'] = df2['지역내총부가가치'].apply(pd.to_numeric,errors='coerce')
-    df2 = df2[(df2['경제활동별']== '소계')]
-    index = df2[(df2['자치구']== '서울시')].index
-    df2 = df2.drop(index)
-    index = df2[(df2['기간']== 2011)].index
-    df2 = df2.drop(index)
-    index = df2[(df2['기간']== 2017)].index
-    df2 = df2.drop(index)
-    index = df2[(df2['기간']== 2018)].index
-    df2 = df2.drop(index)
-    
-    # df1,df2 합치기
-    dff = pd.merge(df1,df2, how='left', left_on=['기간','자치구'], right_on = ['기간','자치구'])
-    dff = dff.drop(['경제활동별'], axis='columns')
-    dff = dff[['기관수','프로그램수','총 수강인원','지역내요소소득','지역내총부가가치']]
-    dff.columns = ['기관수','프로그램수','총수강인원','요소소득','총부가가치']
-    dff = dff.dropna()
     
     # 자치구별로 요소소득의 평균을 구한다 
     grouped2 = df2['지역내요소소득'].groupby(df2['자치구'])
@@ -68,85 +75,55 @@ def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Wi
     fig = go.Figure(data=[  
     go.Bar( x=sorted(a), y=fm, marker_color=colors2),
     ])
-    fig.update_layout(title="자치구별 평균 프로그램 수") 
+#     fig.update_layout(title="자치구별 평균 프로그램 수") 
     plot_div_bar2 = plot(fig, output_type='div')
     
     # 요소소득 평균 그려주기
     fig2 = go.Figure(data=[
     go.Bar( x=sorted(a2), y=fm2,marker_color=colors),
     ])
-    fig2.update_layout(title="자치구별 평균 요소소득")
+#     fig2.update_layout(title="자치구별 평균 요소소득")
     plot_div_bar = plot(fig2, output_type='div')
     
     # 상관계수 Heatmap 그리기
     heat_fig = px.imshow(dff.corr(),
                          x=list(dff.corr().columns),
                          y=list(dff.corr().columns))
-    heat_fig.update_layout(title='총부가가치와 평생교육기관의 히트맵')
+#     heat_fig.update_layout(title='총부가가치와 평생교육기관의 히트맵')
     plot_div_heat = plot(heat_fig,output_type='div')
     
-    
-#     # # 총부가가치 
-# df2 = df2.loc[:,['기간','자치구','경제활동별','지역내요소소득','지역내총부가가치']]
-# df2['지역내총부가가치'] = df2['지역내총부가가치'].apply(pd.to_numeric,errors='coerce')
-# df2 = df2[(df2['경제활동별']== '소계')]
-# index = df2[(df2['자치구']== '서울시')].index
-# df2 = df2.drop(index)
-# 
-# index = df2[(df2['기간']== 2011)].index
-# df2 = df2.drop(index)
-# index = df2[(df2['기간']== 2017)].index
-# df2 = df2.drop(index)
-# index = df2[(df2['기간']== 2018)].index
-# df2 = df2.drop(index)
-# 
-# #평생교육
-# df1 = df1.loc[:,['기간','자치구','기관수','프로그램수','총 수강인원']]
-# idx = df1[(df1["자치구"]=='계')].index
-# df1 = df1.drop(idx)
-#  
-# # 다 합치기
-# dff = pd.merge(df1,df2, how='left', left_on=['기간','자치구'], right_on = ['기간','자치구'])
-# dff = dff.drop(['경제활동별'], axis='columns')
-# dff = dff.dropna()
-# 
-# dff.columns = ['기간','자치구','기관수','프로그램수','총수강인원','요소소득','총부가가치']
-# corr = dff.corr(method='pearson')
-# print(corr)
-# 
-# 
-# dff['프로그램수'] /= 1000
-# dff['요소소득'] /= 10000000
-# 
-# x_data = np.array(dff.요소소득,dtype = np.int32) 
-# y_data = np.array(dff.프로그램수, dtype=np.int32)
-# # 모델 작성 2 : function api를 사용 : 방법1에 비해 유연한 모델을 작성
-# from tensorflow.keras.layers import Input 
-# from tensorflow.keras.models import Model
-# #          
-# inputs = Input(shape=(1,))
-#             
-# # outputs = Dense(1,activation='linear')(inputs) # 히든 레이어 1개
-#              
-# output1 = Dense(64,activation='linear')(inputs)
-# output1 = Dense(128,activation='linear')(output1)
-# output1 = Dense(128,activation='linear')(output1)
-# output1 = Dense(128,activation='linear')(output1)
-# outputs = Dense(1,activation='linear')(output1) # 히든 레이어 2개
-#               
-# model2 = Model(inputs,outputs) 
-#               
-# opti = optimizers.SGD(lr=0.001) # 이하 방법1과 동일
-# model2.compile(opti,loss='mse',metrics='mse')
-# history = model2.fit(x = x_data, y=y_data,batch_size = 1, epochs = 150, verbose=3)
-#            
-#            
-# print('설명력 : ',r2_score(y_data,model2.predict(x_data)))
-# print('실제값2 : ',y_data)
-# print('예측값2 : ',model2.predict(x_data).flatten())
-# x_data = model2.predict(x_data).flatten()
-# 
-# print('예측값3 : ',model2.predict(np.array([50000000/100000000],dtype = np.int32)))
-
     return render(request, "edumain1.html",{'plot_div_bar_mo':plot_div_bar,'plot_div_bar_pro':plot_div_bar2,'plot_div_heat':plot_div_heat})
 
+# 모델 생성
+def pred_model():
+    inputs = Input(shape=(1,))
+    output1 = Dense(64,activation='linear')(inputs)
+    output1 = Dense(128,activation='linear')(output1)
+    output1 = Dense(128,activation='linear')(output1)
+    output1 = Dense(128,activation='linear')(output1)
+    outputs = Dense(1,activation='linear')(output1)
+                   
+    model = Model(inputs,outputs) 
+                   
+    opti = optimizers.SGD(lr=0.001) # 이하 방법1과 동일
+    model.compile(opti,loss='mse',metrics='mse')
+
+    return model
+
+def predFunc(request):
+    
+    money = int(request.GET['money'])
+     
+    x_data = np.array(dff.요소소득,dtype = np.int32) 
+    y_data = np.array(dff.프로그램수, dtype=np.int32)
+    
+    # 모델 불러서 학습시킴
+    model = pred_model()            
+    model.fit(x = x_data, y=y_data,batch_size = 1, epochs = 150, verbose=3)
+    
+    # 설명력과 요청된 값의 예측값
+    r2_s = r2_score(y_data,model.predict(x_data))
+    pred_result = int(1000*model.predict(np.array([money/10000000],dtype = np.int32)))
+    
+    set = {'pred_result':pred_result, 'r2_s':int(r2_s*100)}
+    return HttpResponse(json.dumps(set), content_type='application/json')
