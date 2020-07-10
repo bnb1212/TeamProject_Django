@@ -57,9 +57,6 @@ dff = dff.dropna()
 dff['프로그램수'] /= 1000
 dff['요소소득'] /= 10000000
 
-def listFunc(request):
-    return render(request, "edulist.html")
-
 def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
     rc('font', family=font_name)
     plt.rcParams['axes.unicode_minus'] = False
