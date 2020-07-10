@@ -2,11 +2,11 @@
 소스파일 : seoulsafe/views.py
 파일설명 : 데이터 분석 리포트 작성
 작성자 : 이지운
-버전 : 0.1
+버전 : 1.0
 생성일자 : 2020-07-01
-최종 수정 일자 :2020-07-07
+최종 수정 일자 :2020-07-010
 최종 수정자 : 이지운
-최종 수정 내용 : 시각화 테스트
+최종 수정 내용 : 테스트 완료
 ============================================'''
 
 from django.shortcuts import render
@@ -32,6 +32,7 @@ from plotly.graph_objs import Bar
 import json
 from tensorflow.keras import layers
 from django.http.response import HttpResponse
+
 # Create your views here.
 def mainFunc(request):
     return render(request, 'safelist.html')
@@ -138,6 +139,7 @@ def predCrime(data, input_x):
     print(train_dataset.shape)  # (279, 8) -> (274, 8)
     print(test_dataset.shape)  # (119, 8) -> (118, 8)
 
+    # 표준화 준비
     train_stat = train_dataset.describe()
     train_stat.pop('합계발생')
     train_stat = train_stat.transpose()
