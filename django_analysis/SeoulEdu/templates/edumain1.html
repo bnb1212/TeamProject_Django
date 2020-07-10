@@ -31,6 +31,43 @@
 <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
 <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
 <link rel="stylesheet" href="{% static 'SeoulEdu/css/style.css' %}">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#result-place").empty()
+	$("#btnp").click(function(){
+		//입력자료 검사 
+		if( !$("#money").val() ){ 
+			alert('숫자를 입력해주세요.')
+			return
+		}
+		
+		var str = "<h4 style='text-align: left; color: SteelBlue;'>잠시만 기다려주세요...</h4>"
+		$("#result-place").html(str)
+		
+		var money = $("#money").val()
+		
+		$.ajax({
+			url:'gopred',
+			type:'get',
+			data:{'money':money},
+			dataType:'json',
+			success:function(data){
+				var str = "<h5 style='text-align: left; color: SteelBlue;'>약 " + data['pred_result'] + "개의 평생교육 프로그램이 준비되어 있을 것 입니다.</h5>"
+				str += "<h6 style='text-align: left; color: SteelBlue;'>설명력은 " +data['r2_s'] +  "% 입니다.</h6>" 
+				$("#result-place").empty()
+				$("#result-place").html(str)
+				
+			},
+			error:function(){
+				$("#showData1").text("예측할 수 없습니다.")
+			}
+			
+		})
+	})
+
+})
+</script>
 </head>
 <body>
 
@@ -38,7 +75,7 @@
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="/">Findstate</a>
+			<a class="navbar-brand" href="/">서울의 미래</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +99,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
-		style="background-image: url({% static 'SeoulEdu/images/moneym.jpg' %});"
+		style="background-image: url({% static 'SeoulEdu/images/moneygm2.jpg' %});"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="overlay-2"></div>
@@ -70,13 +107,14 @@
 			<div
 				class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-					<h1 class="mb-3 bread" style="color:White; font-size:80px;"">요소소득과 평생교육</h1>
+					<h1 class="mb-3 bread" style="color:White; font-size:60px;"">요소소득과 평생교육</h1>
 					<p class="breadcrumbs">
-						<span class="mr-2"><a href="index.html">Home <i
-								class="ion-ios-arrow-forward"></i></a></span> <span>Properties
-							Details<i class="ion-ios-arrow-forward"></i>
+						<span class="mr-2"><a href="/">메인 <i
+								class="ion-ios-arrow-forward"></i></a></span> <span>소득별 분석<i
+							class="ion-ios-arrow-forward"></i>
 						</span>
 					</p>
+					<br><br><br><br>
 				</div>
 			</div>
 		</div>
@@ -87,28 +125,25 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="property-details">
+						<div class="text">
+							<h2>서울시 자치구별 평균 요소소득</h2>
+							<span class="subheading">총 25개 구의 2010~2016년 간 자료의 평균</span>
+						</div>
 						{{plot_div_bar_mo|safe}}
-						<div class="text">
-							<h2>Green Valey Home</h2>
-							<span class="subheading">2854 Meadow View Drive, Hartford,
-								USA</span>
-						</div>
 					</div>
 					<div class="property-details">
+						<div class="text">
+							<h2>서울시 자치구별 평생교육 프로그램의 평균 개수</h2>
+							<span class="subheading">총 25개 구의 2010~2016년 간 자료의 평균</span>
+						</div>
 						{{plot_div_bar_pro|safe}}
-						<div class="text">
-							<h2>Green Valey Home</h2>
-							<span class="subheading">2854 Meadow View Drive, Hartford,
-								USA</span>
-						</div>
 					</div>
 					<div class="property-details">
-						{{plot_div_heat|safe}}
 						<div class="text">
-							<h2>Green Valey Home</h2>
-							<span class="subheading">2854 Meadow View Drive, Hartford,
-								USA</span>
+							<h2>평생교육기관 개황과 자치구별 경제활동의 히트맵</h2>
+							<span class="subheading">각 요소 간 상관관계 파악</span>
 						</div>
+						{{plot_div_heat|safe}}
 					</div>
 				</div>
 			</div>
@@ -146,10 +181,11 @@
 		          						<input type="number" id="money" class="form-control" placeholder="숫자입력">    
 				              		</div>
 				              		<div class="form-field">
-				                		<input type="button" value="예측결과 보기"  id='btn1' class="form-control btn btn-primary">
+				                		<input type="button" value="예측결과 보기"  id='btnp' class="form-control btn btn-primary">
 				              		</div>
 								</div>
-								
+								<div id="result-place" style="margin-top:20px;">
+								</div>
 							</div>
 						</div>
 							<!-- 조건 -->
