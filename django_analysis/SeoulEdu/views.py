@@ -5,6 +5,9 @@ from plotly.offline import plot
 import matplotlib.pyplot as plt
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
+
+from tensorflow.keras import optimizers
+from sklearn.metrics import r2_score
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 from sklearn.preprocessing import MinMaxScaler, minmax_scale
@@ -15,6 +18,45 @@ from dask.dataframe.core import DataFrame
 from matplotlib import font_manager, rc
 import plotly.express as px
 import plotly.graph_objects as go
+from tensorflow.keras.layers import Input 
+from tensorflow.keras.models import Model
+import json
+from django.http.response import HttpResponse
+
+df1 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllEdu.xlsx', encoding='utf-8') # 자치구별 평생교육 현황
+df2 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllMo.xlsx', encoding='utf-8') # 자치구별 총부가가치 자료
+
+#평생교육
+df1 = df1.loc[:,['기간','자치구','기관수','프로그램수','총 수강인원','프1000단']]
+index = df1[(df1['자치구']== '계')].index
+df1 = df1.drop(index)
+ 
+# 자치구별로 프로그램수의 평균을 구한다 
+grouped = df1['프로그램수'].groupby(df1['자치구'])
+fm = grouped.mean()
+a = df1.자치구.unique() 
+ 
+# # 총부가가치 
+df2['지역내총부가가치'] = df2['지역내총부가가치'].apply(pd.to_numeric,errors='coerce')
+df2 = df2[(df2['경제활동별']== '소계')]
+index = df2[(df2['자치구']== '서울시')].index
+df2 = df2.drop(index)
+index = df2[(df2['기간']== 2011)].index
+df2 = df2.drop(index)
+index = df2[(df2['기간']== 2017)].index
+df2 = df2.drop(index)
+index = df2[(df2['기간']== 2018)].index
+df2 = df2.drop(index)
+
+# df1,df2 합치기
+dff = pd.merge(df1,df2, how='left', left_on=['기간','자치구'], right_on = ['기간','자치구'])
+dff = dff.drop(['경제활동별'], axis='columns')
+dff = dff[['기관수','프로그램수','총 수강인원','지역내요소소득','지역내총부가가치']]
+dff.columns = ['기관수','프로그램수','총수강인원','요소소득','총부가가치']
+dff = dff.dropna()
+
+dff['프로그램수'] /= 1000
+dff['요소소득'] /= 10000000
 
 def listFunc(request):
     return render(request, "edulist.html")
@@ -23,6 +65,7 @@ def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Wi
     rc('font', family=font_name)
     plt.rcParams['axes.unicode_minus'] = False
     
+
     df1 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllEdu.xlsx', encoding='utf-8') # 자치구별 평생교육 현황
     df2 = pd.read_excel(os.path.dirname(os.path.realpath(__file__)) + '\\static\\SeoulEdu\\files\\AllMo.xlsx', encoding='utf-8') # 자치구별 총부가가치 자료
     
@@ -149,4 +192,3 @@ def main1Func(request):    font_name = font_manager.FontProperties(fname="c:/Wi
 # print('예측값3 : ',model2.predict(np.array([50000000/100000000],dtype = np.int32)))
 
     return render(request, "edumain1.html",{'plot_div_bar_mo':plot_div_bar,'plot_div_bar_pro':plot_div_bar2,'plot_div_heat':plot_div_heat})
-
