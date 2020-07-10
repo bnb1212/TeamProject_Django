@@ -25,7 +25,6 @@ def mainFunc(request):
     plt.rc('xtick', labelsize=7)#그래프가 깨지지 않게 하기 위한 사이즈 조절 
 
     df = pd.read_csv(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulGarbage\\files\\reportreform.csv', encoding = 'euc-kr')
-    # csv file reading
 
     df = df.astype({'발생량': np.float, 
                     '재활용': np.float,
@@ -34,15 +33,8 @@ def mainFunc(request):
                     '매립': np.float,
                     '정도': np.float,})#통계를 내기 위한 데이터 타입 변환
 
-    #print('------')
-    #print(df.info())#변환이 되었는지 확인하기.
-   
-   
     dfyear = pd.read_csv(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulGarbage\\files\\yearsum.csv', encoding = 'euc-kr')
     #년도별 쓰레기 통계를 위한 데이터 csv file read
-    #print(dfyear)
-    
-
     
     # 시각화 (bar chart)
     x_data = dfyear["기간"]
@@ -53,14 +45,12 @@ def mainFunc(request):
                output_type='div')#lines 그래프를 그려줌
 
     sum_by_gu = df.groupby('구분').발생량.mean()#구별로 쓰레기양의 평균치를 구해줌
-    #print(sum_by_gu)
     label = ['종로' ,'중구' ,'용산' ,'성동', '광진' ,'동대문', '중랑' ,'성북', '강북' ,'도봉', '노원' ,'은평',
              '서대문', '마포' ,'양천' ,'강서', '구로' ,'금천' ,'영등포', '동작', '관악', '서초', '강남','송파',
              '강동']#구별 라벨
 
     index = np.arange(len(label))
 
-    #print(label)
   
       # 시각화 (bar chart)
     x_data2 = label
@@ -71,11 +61,8 @@ def mainFunc(request):
                output_type='div')#구별 쓰레기양 평균을 그래프 (lines)으로 만들어줌
 
 
-    #print('datasetinfo--------------')
-    #df2 = pd.read_csv('reportreformobject.csv',encoding='euc-kr')
     
     df2 = pd.read_csv(os.path.dirname(os.path.realpath(__file__)) + '\\static\\seoulGarbage\\files\\reportreformobject.csv', encoding = 'euc-kr')
-    #df = pd.read_csv(os.path.dirname(os.path.realpath(__file__)) + '\\static\\files\\reportreform.csv', encoding = 'euc-kr')
 
     dataset=df2.values
 
@@ -83,7 +70,7 @@ def mainFunc(request):
     print(x)
     y = dataset[:,6]#label
     print(y)
-    '''
+
     model = Sequential()
     model.add(Dense(32, input_dim=4, activation='relu'))
     model.add(Dense(32,activation='relu'))
@@ -106,12 +93,10 @@ def mainFunc(request):
 
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     history = model.fit(x, y, validation_split=0.3, epochs=30, batch_size=10)#모델학습하면서 
-    '''
-    model = tf.keras.models.load_model('mnist_model.hdf5')#모델저장
+
     loss, acc = model.evaluate(x,y, verbose=0)
     print('훈련된  모델 정확도 : {:5.2f}%'.format(acc * 100))
     model.save('mnist_model.hdf5')
-    del model
 
     
     #return render(request, "edumain.html")
@@ -161,7 +146,7 @@ def Func1(request):
     history = model.fit(x, y, validation_split=0.3, epochs=50, batch_size=10)#모델학습하면서 
     '''
     
-    model = tf.keras.models.load_model('mnist_model.hdf5')#위에서 학습한 모델을 불러온다 -> ajax 써도 끊기지 않음
+    model = tf.keras.models.load_model('mnist_model.hdf5') #위에서 학습한 모델을 불러온다 -> ajax 써도 끊기지 않음
 
     #loss, acc = model.evaluate(x,y, verbose=0)
     #print('훈련된  모델 정확도 : {:5.2f}%'.format(acc * 100))
